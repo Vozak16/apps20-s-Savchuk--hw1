@@ -2,9 +2,9 @@ package ua.edu.ucu.tempseries;
 
 
 public class TemperatureSeriesAnalysis {
-    static final int MIN_TEMPERATURE = -273;
     private double[] temperatureArray;
     private int temperatureArraySize;
+    static final int MIN_TEMPERATURE = -273;
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[]{};
         this.temperatureArraySize = 0;
@@ -39,15 +39,15 @@ public class TemperatureSeriesAnalysis {
         meanValue = meanValue / this.temperatureArraySize;
         double sumDifference = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            sumDifference += Math.pow(meanValue - this.temperatureArray[i], 2);
+            sumDifference += (meanValue - this.temperatureArray[i])
+                    * (meanValue - this.temperatureArray[i]);
         }
         return Math.sqrt(sumDifference / this.temperatureArraySize);
 
 
     }
 
-
-    public double Min() throws IllegalArgumentException {
+    public double min() throws IllegalArgumentException {
         this.checkForEmptyArray();
         double min = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
@@ -59,7 +59,7 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double Max() throws IllegalArgumentException {
+    public double max() throws IllegalArgumentException {
         this.checkForEmptyArray();
         double max = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
@@ -77,8 +77,7 @@ public class TemperatureSeriesAnalysis {
 
     public void checkForEmptyArray() {
         if (this.temperatureArray.length == 0) {
-            throw new IllegalArgumentException ("The temperature " +
-                    "series is empty!");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -87,9 +86,9 @@ public class TemperatureSeriesAnalysis {
         double minDistance = Math.abs(this.temperatureArray[0] - tempValue);
         double tempClosestToValue = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            double Distance = Math.abs(this.temperatureArray[i] - tempValue);
-            if (minDistance > Distance) {
-                minDistance = Distance;
+            double distance = Math.abs(this.temperatureArray[i] - tempValue);
+            if (minDistance > distance) {
+                minDistance = distance;
                 tempClosestToValue = this.temperatureArray[i];
 
             }
@@ -102,7 +101,7 @@ public class TemperatureSeriesAnalysis {
         double[] newArray = new double[this.temperatureArray.length];
         int j = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            if(this.temperatureArray[i] < tempValue){
+            if (this.temperatureArray[i] < tempValue) {
                 newArray[j] = this.temperatureArray[i];
                 j += 1;
             }
@@ -115,7 +114,7 @@ public class TemperatureSeriesAnalysis {
         double[] newArray = new double[this.temperatureArray.length];
         int j = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            if(this.temperatureArray[i] > tempValue){
+            if (this.temperatureArray[i] > tempValue) {
                 newArray[j] = this.temperatureArray[i];
                 j += 1;
             }
@@ -129,8 +128,8 @@ public class TemperatureSeriesAnalysis {
         checkForEmptyArray();
         double avgTemp = this.average();
         double devTemp = this.deviation();
-        double minTemp = this.Min();
-        double maxTemp = this.Max();
+        double minTemp = this.min();
+        double maxTemp = this.max();
         return new TempSummaryStatistics(avgTemp, devTemp, minTemp, maxTemp);
     }
 
@@ -140,10 +139,10 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double... temps) {
         int newLength;
-        if(this.temperatureArray.length != 0){
+        if (this.temperatureArray.length != 0) {
             newLength = this.temperatureArray.length;
         }
-        else{
+        else {
             newLength = temps.length;
         }
 
@@ -151,9 +150,11 @@ public class TemperatureSeriesAnalysis {
             newLength = newLength * 2;
         }
         double[] newArray = new double[newLength];
-        if (this.temperatureArraySize >= 0)
-            System.arraycopy(this.temperatureArray, 0, newArray, 0, this.temperatureArraySize);
-        int j = 0;
+        if (this.temperatureArraySize >= 0){
+            System.arraycopy(this.temperatureArray, 0,
+                    newArray, 0, this.temperatureArraySize);
+        }
+            int j = 0;
         for (double temp : temps) {
 
             if (checkRightTemperature(temp)) {

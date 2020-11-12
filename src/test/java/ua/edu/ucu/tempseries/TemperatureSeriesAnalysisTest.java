@@ -89,7 +89,7 @@ public class TemperatureSeriesAnalysisTest {
         double expResult = 2.0;
 
         // call tested method
-        double actualResult = seriesAnalysis.Min();
+        double actualResult = seriesAnalysis.min();
 
         // compare expected result with actual result
         assertEquals(expResult, actualResult, 0.00001);
@@ -103,7 +103,7 @@ public class TemperatureSeriesAnalysisTest {
         double expResult = -7.0;
 
         // call tested method
-        double actualResult = seriesAnalysis.Min();
+        double actualResult = seriesAnalysis.min();
 
         // compare expected result with actual result
         assertEquals(expResult, actualResult, 0.00001);
@@ -115,7 +115,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
-        double actualResult = seriesAnalysis.Min();
+        double actualResult = seriesAnalysis.min();
     }
     @Test
     public void testMaxWithOneElementArray() throws IllegalAccessException {
@@ -125,7 +125,7 @@ public class TemperatureSeriesAnalysisTest {
         double expResult = 2.0;
 
         // call tested method
-        double actualResult = seriesAnalysis.Max();
+        double actualResult = seriesAnalysis.max();
 
         // compare expected result with actual result
         assertEquals(expResult, actualResult, 0.00001);
@@ -139,7 +139,7 @@ public class TemperatureSeriesAnalysisTest {
         double expResult = 6.0;
 
         // call tested method
-        double actualResult = seriesAnalysis.Max();
+        double actualResult = seriesAnalysis.max();
 
         // compare expected result with actual result
         assertEquals(expResult, actualResult, 0.00001);
@@ -151,7 +151,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
-        double actualResult = seriesAnalysis.Max();
+        double actualResult = seriesAnalysis.max();
     }
 
     @Test
