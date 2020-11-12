@@ -9,7 +9,7 @@ final public class TempSummaryStatistics {
     final private double maxTemp;
 
     public TempSummaryStatistics(double avgTemp, double devTemp,
-                                 double minTemp, double maxTemp){
+                                 double minTemp, double maxTemp) {
         this.avgTemp = avgTemp;
         this.devTemp = devTemp;
         this.maxTemp = maxTemp;
@@ -17,22 +17,22 @@ final public class TempSummaryStatistics {
     }
 
     @Getter
-    public double getAvgTemp(){
+    public double getAvgTemp() {
         return this.avgTemp;
     }
 
     @Getter
-    public double getDevTemp(){
+    public double getDevTemp() {
         return this.devTemp;
     }
 
     @Getter
-    public double getMaxTemp(){
+    public double getMaxTemp() {
         return this.maxTemp;
     }
 
     @Getter
-    public double getMinTemp(){
+    public double getMinTemp() {
         return this.minTemp;
     }
 }

@@ -1,12 +1,10 @@
 package ua.edu.ucu.tempseries;
 
-import sun.font.TrueTypeFont;
 
 public class TemperatureSeriesAnalysis {
     double[] temperatureArray;
     int temperatureArraySize;
     static final int minTemperature = -273;
-
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[]{};
         this.temperatureArraySize = 0;
@@ -77,9 +75,9 @@ public class TemperatureSeriesAnalysis {
         return findTempClosestToValue(0);
     }
 
-    public void CheckForEmptyArray(){
+    public void CheckForEmptyArray() {
         if (this.temperatureArray.length == 0) {
-            throw new IllegalArgumentException("The temprature series is empty!");
+            throw new IllegalArgumentException("The temperature series is empty!");
         }
     }
 
@@ -135,7 +133,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public boolean CheckRightTemperature(double tempValue) {
-        return tempValue > -273;
+        return tempValue > minTemperature;
     }
 
     public int addTemps(double... temps) {
