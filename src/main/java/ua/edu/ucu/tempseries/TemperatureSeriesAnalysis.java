@@ -4,7 +4,8 @@ package ua.edu.ucu.tempseries;
 public class TemperatureSeriesAnalysis {
     private double[] temperatureArray;
     private int temperatureArraySize;
-    static final int MIN_TEMPERATURE = -273;
+    final int MIN_TEMPERATURE = -273;
+
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[]{};
         this.temperatureArraySize = 0;
@@ -150,7 +151,7 @@ public class TemperatureSeriesAnalysis {
             newLength = newLength * 2;
         }
         double[] newArray = new double[newLength];
-        if (this.temperatureArraySize >= 0){
+        if (this.temperatureArraySize >= 0) {
             System.arraycopy(this.temperatureArray, 0,
                     newArray, 0, this.temperatureArraySize);
         }
