@@ -2,9 +2,9 @@ package ua.edu.ucu.tempseries;
 
 
 public class TemperatureSeriesAnalysis {
-    static final int MinTemperature = -273;
-    double[] temperatureArray;
-    int temperatureArraySize;
+    static final int MIN_TEMPERATURE = -273;
+    private double[] temperatureArray;
+    private int temperatureArraySize;
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[]{};
         this.temperatureArraySize = 0;
@@ -77,7 +77,7 @@ public class TemperatureSeriesAnalysis {
 
     public void checkForEmptyArray() {
         if (this.temperatureArray.length == 0) {
-            throw new IllegalArgumentException("The temperature " +
+            throw new IllegalArgumentException ("The temperature " +
                     "series is empty!");
         }
     }
@@ -85,16 +85,16 @@ public class TemperatureSeriesAnalysis {
     public double findTempClosestToValue(double tempValue) {
         this.checkForEmptyArray();
         double minDistance = Math.abs(this.temperatureArray[0] - tempValue);
-        double TempClosestToValue = this.temperatureArray[0];
+        double tempClosestToValue = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
             double Distance = Math.abs(this.temperatureArray[i] - tempValue);
             if (minDistance > Distance) {
                 minDistance = Distance;
-                TempClosestToValue = this.temperatureArray[i];
+                tempClosestToValue = this.temperatureArray[i];
 
             }
         }
-        return TempClosestToValue;
+        return tempClosestToValue;
     }
 
     public double[] findTempsLessThen(double tempValue) {
@@ -123,7 +123,8 @@ public class TemperatureSeriesAnalysis {
         return newArray;
     }
 
-    public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
+    public TempSummaryStatistics summaryStatistics()
+            throws IllegalArgumentException {
 
         checkForEmptyArray();
         double avgTemp = this.average();
@@ -134,7 +135,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public boolean checkRightTemperature(double tempValue) {
-        return tempValue > MinTemperature;
+        return tempValue > MIN_TEMPERATURE;
     }
 
     public int addTemps(double... temps) {
