@@ -2,9 +2,9 @@ package ua.edu.ucu.tempseries;
 
 
 public class TemperatureSeriesAnalysis {
+    static final int MinTemperature = -273;
     double[] temperatureArray;
     int temperatureArraySize;
-    static final int minTemperature = -273;
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[]{};
         this.temperatureArraySize = 0;
@@ -17,7 +17,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double average() throws IllegalArgumentException {
-        this.CheckForEmptyArray();
+        this.checkForEmptyArray();
         double sum = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
             sum += temperatureArray[i];
@@ -28,7 +28,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double deviation() {
-        this.CheckForEmptyArray();
+        this.checkForEmptyArray();
         double meanValue = 0;
 
 
@@ -48,7 +48,7 @@ public class TemperatureSeriesAnalysis {
 
 
     public double Min() throws IllegalArgumentException {
-        this.CheckForEmptyArray();
+        this.checkForEmptyArray();
         double min = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
             if (min > temperatureArray[i]) {
@@ -60,7 +60,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double Max() throws IllegalArgumentException {
-        this.CheckForEmptyArray();
+        this.checkForEmptyArray();
         double max = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
             if (max < temperatureArray[i]) {
@@ -75,14 +75,15 @@ public class TemperatureSeriesAnalysis {
         return findTempClosestToValue(0);
     }
 
-    public void CheckForEmptyArray() {
+    public void checkForEmptyArray() {
         if (this.temperatureArray.length == 0) {
-            throw new IllegalArgumentException("The temperature series is empty!");
+            throw new IllegalArgumentException("The temperature " +
+                    "series is empty!");
         }
     }
 
     public double findTempClosestToValue(double tempValue) {
-        this.CheckForEmptyArray();
+        this.checkForEmptyArray();
         double minDistance = Math.abs(this.temperatureArray[0] - tempValue);
         double TempClosestToValue = this.temperatureArray[0];
         for (int i = 0; i < this.temperatureArraySize; i++) {
@@ -97,7 +98,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        CheckForEmptyArray();
+        checkForEmptyArray();
         double[] newArray = new double[this.temperatureArray.length];
         int j = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
@@ -110,7 +111,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        CheckForEmptyArray();
+        checkForEmptyArray();
         double[] newArray = new double[this.temperatureArray.length];
         int j = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
@@ -124,7 +125,7 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
 
-        CheckForEmptyArray();
+        checkForEmptyArray();
         double avgTemp = this.average();
         double devTemp = this.deviation();
         double minTemp = this.Min();
@@ -132,8 +133,8 @@ public class TemperatureSeriesAnalysis {
         return new TempSummaryStatistics(avgTemp, devTemp, minTemp, maxTemp);
     }
 
-    public boolean CheckRightTemperature(double tempValue) {
-        return tempValue > minTemperature;
+    public boolean checkRightTemperature(double tempValue) {
+        return tempValue > MinTemperature;
     }
 
     public int addTemps(double... temps) {
@@ -154,7 +155,7 @@ public class TemperatureSeriesAnalysis {
         int j = 0;
         for (double temp : temps) {
 
-            if (CheckRightTemperature(temp)) {
+            if (checkRightTemperature(temp)) {
                 newArray[j + this.temperatureArraySize] = temp;
                 j += 1;
             }
