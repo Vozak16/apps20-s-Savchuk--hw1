@@ -7,7 +7,7 @@ public class TemperatureSeriesAnalysis {
     final int MIN_TEMPERATURE = -273;
 
     public TemperatureSeriesAnalysis() {
-        this.temperatureArray = new double[]{};
+        this.temperatureArray = new double[] {};
         this.temperatureArraySize = 0;
     }
 
@@ -40,8 +40,8 @@ public class TemperatureSeriesAnalysis {
         meanValue = meanValue / this.temperatureArraySize;
         double sumDifference = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            sumDifference += (meanValue - this.temperatureArray[i])
-                    * (meanValue - this.temperatureArray[i]);
+            sumDifference += (meanValue - this.temperatureArray[i]) *
+                    (meanValue - this.temperatureArray[i]);
         }
         return Math.sqrt(sumDifference / this.temperatureArraySize);
 
@@ -138,12 +138,11 @@ public class TemperatureSeriesAnalysis {
         return tempValue > MIN_TEMPERATURE;
     }
 
-    public int addTemps(double... temps) {
+    public int addTemps(double...temps) {
         int newLength;
         if (this.temperatureArray.length != 0) {
             newLength = this.temperatureArray.length;
-        }
-        else {
+        } else {
             newLength = temps.length;
         }
 
@@ -155,8 +154,8 @@ public class TemperatureSeriesAnalysis {
             System.arraycopy(this.temperatureArray, 0,
                     newArray, 0, this.temperatureArraySize);
         }
-            int j = 0;
-        for (double temp : temps) {
+        int j = 0;
+        for (double temp: temps) {
 
             if (checkRightTemperature(temp)) {
                 newArray[j + this.temperatureArraySize] = temp;
