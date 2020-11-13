@@ -40,8 +40,8 @@ public class TemperatureSeriesAnalysis {
         meanValue = meanValue / this.temperatureArraySize;
         double sumDifference = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            sumDifference += (meanValue - this.temperatureArray[i]) *
-                             (meanValue - this.temperatureArray[i]);
+            sumDifference += (meanValue - this.temperatureArray[i])
+                    * (meanValue - this.temperatureArray[i]);
         }
         return Math.sqrt(sumDifference / this.temperatureArraySize);
 
