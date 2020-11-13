@@ -2,9 +2,9 @@ package ua.edu.ucu.tempseries;
 
 
 public class TemperatureSeriesAnalysis {
+    static final int MIN_TEMPERATURE = -273;
     private double[] temperatureArray;
     private int temperatureArraySize;
-    final int MIN_TEMPERATURE = -273;
 
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[] {};
