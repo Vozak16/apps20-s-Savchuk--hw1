@@ -2,9 +2,9 @@ package ua.edu.ucu.tempseries;
 
 
 public class TemperatureSeriesAnalysis {
-    static final int MIN_TEMPERATURE = -273;
-    private double[] temperatureArray;
     private int temperatureArraySize;
+    private double[] temperatureArray;
+    static final int MIN_TEMPERATURE = -273;
 
     public TemperatureSeriesAnalysis() {
         this.temperatureArray = new double[] {};
@@ -40,8 +40,7 @@ public class TemperatureSeriesAnalysis {
         meanValue = meanValue / this.temperatureArraySize;
         double sumDifference = 0;
         for (int i = 0; i < this.temperatureArraySize; i++) {
-            sumDifference += (meanValue - this.temperatureArray[i]) *
-                             (meanValue - this.temperatureArray[i]);
+            sumDifference += Math.pow(meanValue - this.temperatureArray[i], 2);
         }
         return Math.sqrt(sumDifference / this.temperatureArraySize);
 
